@@ -1,6 +1,8 @@
 import React, {useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import {getRecipeByid} from '../services/recipeService';
+import {getRecipeById} from '../services/recipeService';
+import Loader from '../components/Loader';
+import './RecipePage.css';
 const RecipePage = () => {
   const {recipeId}=useParams();
   const [recipe,setRecipe]=useState(null);
@@ -15,7 +17,7 @@ const RecipePage = () => {
 
       }
       catch(err){
-        console.error('failed to fetch ',error);
+        console.error('failed to fetch ',err);
       }
       finally{
         setLoading(false);
@@ -40,7 +42,7 @@ const RecipePage = () => {
   }
 
   if(loading){
-    return <div className="loading-message">Loading recipe...</div>
+    return <Loader/>;
   }
   if (!recipe){
     return <div className="error-message">Recipe not found.</div>
@@ -58,8 +60,7 @@ const RecipePage = () => {
           <h2>Ingredients</h2>
           <ul className="ingredient-list">
             {ingredients.map((item, index) => (
-              // We use the index as a key here, which is acceptable because this list
-              // is static for a given recipe and will not be re-ordered.
+             
               <li key={index}>
                 <strong>{item.ingredient}</strong> - {item.measure}
               </li>
@@ -70,10 +71,8 @@ const RecipePage = () => {
 
       <div className="recipe-instructions">
         <h2>Instructions</h2>
-        {/* The instructions often contain newline characters ('\\n'). 
-            We split the string by newlines and map over the array to render
-            each line in its own paragraph tag, preserving the formatting. */}
-        {recipe.strInstructions.split('\n').map((line, index) => (
+        
+        {(recipe?.strInstructions?.split("\n")|| []).map((line, index) => (
           line.trim() && <p key={index}>{line}</p>
         ))}
       </div>

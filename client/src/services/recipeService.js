@@ -18,7 +18,7 @@ export const searchRecipes=async (query)=>{
 
 export const getRecipeById =async (id)=>{
   try{
-    const response=await recipeApi.get(`/lookup.php?=${id}`);
+    const response=await recipeApi.get(`/lookup.php?i=${id}`);
     return response.data.meals ? response.data.meals[0]:null;
   }
   catch(err){
