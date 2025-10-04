@@ -1,0 +1,79 @@
+/* src/pages/RecipePage.css */
+
+.recipe-page {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+/* This creates our two-column layout */
+.recipe-layout {
+  display: flex;
+  flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.recipe-image-container {
+  flex: 1; /* Each column takes up equal space */
+  min-width: 300px; /* Prevents columns from getting too squished */
+}
+
+.recipe-info-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.recipe-page-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-info-container h2,
+.recipe-instructions h2 {
+  font-size: 1.75rem;
+  color: #444;
+  border-bottom: 2px solid #f0a500;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ingredient-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ingredient-list li {
+  background-color: #f9f9f9;
+  border-left: 4px solid #f0a500;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.recipe-instructions p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem; /* Adds space between paragraphs */
+  color: #555;
+}
+
+/* For loading and error messages */
+.loading-message, .error-message {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 4rem;
+  color: #666;
+}

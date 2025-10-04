@@ -1,0 +1,19 @@
+.home-page{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding:2rem;
+  text-align:center;
+}
+
+.recipe-list{
+  display:grid;
+  display-template-columns:repeat(auto-fill,minmax(280px,ifr));
+  gap:2rem;
+  margin-top:2rem;
+  text-align:left;
+}
+.no-results-message{
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
