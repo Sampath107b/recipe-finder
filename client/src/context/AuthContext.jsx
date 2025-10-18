@@ -1,5 +1,5 @@
-import React, {createContext,useState,useEffect} from 'react';
-
+import React, {createContext,useState,useEffect, useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 const parseJwt=(token)=>{
   try{
@@ -12,9 +12,15 @@ const parseJwt=(token)=>{
 
 export const AuthContext=createContext(null);
 
+export const useAuth=()=>{
+  return useContext(AuthContext);
+};
+
+
 export const AuthProvider=({children})=>{
   const [user,setUser]=useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate=useNavigate();
   useEffect(()=>{
     const token=localStorage.getItem('token');
     if (token){
@@ -40,6 +46,7 @@ export const AuthProvider=({children})=>{
   const logout=()=>{
     setUser(null);
     localStorage.removeItem('token');
+    navigate('/');
   };
 
   const authContextValue={

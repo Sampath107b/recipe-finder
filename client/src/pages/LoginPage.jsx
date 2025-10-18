@@ -1,12 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import './AuthForm.css';
-import {login} from '../services/authService';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import {login as loginUser} from '../services/authService';
 const LoginPage = () => {
   const [formData,setFormData]=useState({
     email:'',
     password:'',
   });
   const [error, setError] = useState(null);
+  const navigate=useNavigate();
+  const {login}=useContext(AuthContext);
 
   const handleChange = (e) => {
     if (error) setError(null);
@@ -21,12 +25,12 @@ const LoginPage = () => {
     setError(null);
 
     try {
-      const data = await login(formData);
-
-      console.log('Login successful!', data);
+      const data = await loginUser(formData);
+      
       if (data.token){
         localStorage.setItem('token',data.token);
-        console.log('token saved to localStorage');
+        login(data);
+        navigate('/')
       }
 
     } catch (err) {
